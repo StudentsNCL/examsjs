@@ -1,12 +1,12 @@
 
 var cheerio = require('cheerio'),
     request = require('request'),
-    moment = require('moment');
-
+    moment = require('moment'),
+    ncl = require('ncl-connect');
 
 exports.getTimetable = function(user, callback) {
 
-    getPage(user, 'http://crypt.ncl.ac.uk/exam-timetable/index.php', function(error, $)
+    ncl.getPage(user, 'http://crypt.ncl.ac.uk/exam-timetable/index.php', function(error, $)
     {
         if(error)
             return callback(error);
@@ -28,45 +28,8 @@ exports.getTimetable = function(user, callback) {
             });
         }); 
 
-        console.log(exams);
+        callback(null, exams);
     });
 }
-
-function getPage(user, url, callback)
-{
-    if(user.dev) {
-        var fs = require('fs');
-        var filename = url.split('?')[0].substring(23).replace(/\//g, '-');
-        var file = fs.readFileSync('testHTML/' + filename, 'utf8');
-        var $ = cheerio.load(file);
-        callback(null, $);
-    }
-    else {
-        if(!user.cookie)
-            callback({error: 401}, null);
-        else {
-            var headers = {
-                'Cookie': user.cookie
-            };
-            request.get({
-              url: url,
-              headers: headers
-            }, function (error, response, body)
-            {
-                if (!error && response.statusCode == 200)
-                {
-                    var $ = cheerio.load(body);
-
-                    callback(null, $);
-                }
-                else
-                {
-                    callback(error || { error: 401 }, null);
-                }
-            });
-        }
-    }
-}
-
 
 
