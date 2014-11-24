@@ -1,5 +1,5 @@
 {
-  "name": "ncl-exams",
+  "name": "examsjs",
   "version": "0.0.1",
   "description": "Exam timetable scraper for Newcastle University students",
   "main": "exams.js",
@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/StudentsNCL/exams.git"
+    "url": "https://github.com/StudentsNCL/examsjs.git"
   },
   "author": "",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/StudentsNCL/exams/issues"
+    "url": "https://github.com/StudentsNCL/examsjs/issues"
   },
-  "homepage": "https://github.com/StudentsNCL/exams",
+  "homepage": "https://github.com/StudentsNCL/examsjs",
   "dependencies": {
     "cheerio": "^0.18.0",
     "moment": "^2.8.4",
-    "ncl-login": "https://github.com/StudentsNCL/ncl-connect/tarball/master",
+    "ncl-connect": "https://github.com/StudentsNCL/ncl-connect/tarball/master",
     "request": "^2.48.0"
   }
 }
